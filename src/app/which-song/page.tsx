@@ -7,7 +7,7 @@ export default function WhichSongPage() {
     <GamePageWrapper
       title="וורדעל"
       icon="⬜"
-      subtitle="נחשו את המילה בסגנון משחק המילים של הארץ."
+      subtitle="נחשו את המילה הנכונה בתוך 6 ניסיונות."
     >
       <WordleGame data={wordleData} />
     </GamePageWrapper>

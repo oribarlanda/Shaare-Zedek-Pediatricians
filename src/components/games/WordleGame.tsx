@@ -51,7 +51,10 @@ function cleanHebrewInput(value: string) {
 function evaluateGuess(guess: string, answer: string): EvaluatedLetter[] {
   const guessLetters = guess.split("");
   const answerLetters = answer.split("");
-  const result: EvaluatedLetter[] = guessLetters.map((letter) => ({ letter, state: "absent" }));
+  const result: EvaluatedLetter[] = guessLetters.map((letter) => ({
+    letter,
+    state: "absent",
+  }));
   const remaining: Record<string, number> = {};
 
   answerLetters.forEach((letter, index) => {
@@ -109,6 +112,7 @@ export default function WordleGame({ data }: { data: WordleData }) {
   const answer = useMemo(() => normalizeWord(data.answer), [data.answer]);
   const wordLength = answer.length;
   const maxAttempts = data.maxAttempts ?? 6;
+
   const acceptedAnswers = useMemo(
     () => [answer, ...(data.acceptedAnswers ?? []).map(normalizeWord)].filter(Boolean),
     [answer, data.acceptedAnswers]
@@ -120,6 +124,7 @@ export default function WordleGame({ data }: { data: WordleData }) {
   const [wrong, setWrong] = useState(false);
   const [finished, setFinished] = useState(false);
   const [won, setWon] = useState(false);
+
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   const evaluatedRows = useMemo(
@@ -128,6 +133,7 @@ export default function WordleGame({ data }: { data: WordleData }) {
   );
 
   const keyboardState = useMemo(() => getKeyboardState(evaluatedRows), [evaluatedRows]);
+
   const score = won ? calcScore(100, guesses.length - 1, maxAttempts - 1) : 0;
   const shareText = `⬜ פתרתי את "וורדעל"!\nניקוד: ${score}`;
 
@@ -152,6 +158,7 @@ export default function WordleGame({ data }: { data: WordleData }) {
       hintsUsed,
       completedAt: Date.now(),
     });
+
     window.dispatchEvent(new Event("score-updated"));
 
     setWon(didWin);
@@ -236,7 +243,7 @@ export default function WordleGame({ data }: { data: WordleData }) {
           return (
             <div
               key={`${rowIndex}-${letterIndex}`}
-              className={`aspect-square min-h-11 max-h-14 border-2 flex items-center justify-center text-2xl sm:text-3xl font-extrabold transition-all duration-300 ${tileClass(state, Boolean(letter))}`}
+              className={`aspect-square min-h-11 max-h-14 border-2 flex items-center justify-center text-2xl sm:text-3xl font-bold transition-all duration-300 ${tileClass(state, Boolean(letter))}`}
             >
               {letter}
             </div>
@@ -263,10 +270,15 @@ export default function WordleGame({ data }: { data: WordleData }) {
 
       <div className="bg-white border border-brand-border rounded-2xl p-4 text-center space-y-2">
         <div className="flex items-center justify-center gap-2">
-          <span className="inline-flex h-7 w-7 items-center justify-center border-2 border-[#d3d6da] bg-white text-sm font-black text-[#1a1a1b]">ו</span>
-          <h2 className="text-2xl font-black tracking-tight text-[#1a1a1b]">{data.title ?? "וורדעל"}</h2>
+          <span className="inline-flex h-7 w-7 items-center justify-center border-2 border-[#d3d6da] bg-white text-sm font-bold text-[#1a1a1b]">
+            ו
+          </span>
+          <h2 className="text-2xl font-bold text-[#1a1a1b]">{data.title ?? "וורדעל"}</h2>
         </div>
-        {data.description && <p className="text-sm leading-relaxed text-brand-muted">{data.description}</p>}
+
+        {data.description && (
+          <p className="text-sm leading-relaxed text-brand-muted">{data.description}</p>
+        )}
       </div>
 
       <div className={`min-h-7 text-center text-sm font-bold ${wrong ? "text-red-600" : "text-brand-text"}`}>
@@ -313,9 +325,7 @@ export default function WordleGame({ data }: { data: WordleData }) {
         </div>
       )}
 
-      {finished && (
-        <GameResult solved={won} score={score} shareText={shareText} />
-      )}
+      {finished && <GameResult solved={won} score={score} shareText={shareText} />}
     </div>
   );
 }

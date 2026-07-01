@@ -21,7 +21,7 @@ export default function Header() {
               className="h-8 w-auto object-contain"
             />
             <span className="font-bold text-brand-text text-sm">
-              יום בריכה בחצב - אבי"ב הוואי ובידור
+              גם פה אורלי תבחר מה לכתוב
             </span>
           </Link>
 

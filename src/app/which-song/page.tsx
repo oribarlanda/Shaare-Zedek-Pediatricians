@@ -1,11 +1,15 @@
-import songsData from "../../../data/songs.json";
-import WhichSongGame from "@/components/games/WhichSongGame";
+import wordleData from "../../../data/wordle.json";
+import WordleGame from "@/components/games/WordleGame";
 import GamePageWrapper from "@/components/ui/GamePageWrapper";
 
 export default function WhichSongPage() {
   return (
-    <GamePageWrapper title="איזה שיר" icon="🎵" subtitle="נחשו שם שיר לפי התיאור. ניתן להשתמש ברמזים.">
-      <WhichSongGame data={songsData} />
+    <GamePageWrapper
+      title="וורדעל"
+      icon="⬜"
+      subtitle="נחשו את המילה בסגנון משחק המילים של הארץ."
+    >
+      <WordleGame data={wordleData} />
     </GamePageWrapper>
   );
 }

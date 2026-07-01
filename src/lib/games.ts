@@ -24,9 +24,9 @@ export const GAMES: GameInfo[] = [
   },
   {
     id: "which-song",
-    title: "איזה שיר",
-    description: "זיהוי שיר לפי התרגום שלו בלבד.",
-    icon: "🎵",
+    title: "וורדעל",
+    description: "נחשו את המילה בתוך 6 ניסיונות, בסגנון משחק המילים של הארץ.",
+    icon: "⬜",
     path: "/which-song",
   },
   {

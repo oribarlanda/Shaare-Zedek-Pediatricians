@@ -15,19 +15,19 @@
     },
     {
       "title": "שמות כפולים",
-      "difficulty": "hard",
+      "difficulty": "easy",
       "hint": "דו פרצופי",
       "words": ["שני", "עדי", "אייל", "יאיר"]
     },
     {
       "title": "הורים לרופאים",
-      "difficulty": "easy",
+      "difficulty": "expert",
       "hint": "דור שני",
       "words": ["אורלי", "רחל", "יחיאל", "מתי"]
     },
     {
       "title": "שמות עם אל",
-      "difficulty": "expert",
+      "difficulty": "hard",
       "hint": "צדיקים",
       "words": ["אריאל", "אלה", "רפי", "עשהאל"]
     }

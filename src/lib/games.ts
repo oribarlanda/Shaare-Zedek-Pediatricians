@@ -25,7 +25,7 @@ export const GAMES: GameInfo[] = [
   {
     id: "which-song",
     title: "וורדעל",
-    description: "נחשו את המילה בתוך 6 ניסיונות, בסגנון משחק המילים של הארץ.",
+    description: "נחשו את המילה הנכונה בתוך 6 ניסיונות.",
     icon: "⬜",
     path: "/which-song",
   },

@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import ShareButton from "./ShareButton";
 
@@ -23,7 +24,18 @@ export default function GameResult({ solved, score, shareText, explanation }: Pr
       )}
       <div className="flex gap-3 flex-wrap pt-1">
         {solved && <ShareButton text={shareText} />}
-        <Link href="/" className="px-4 py-2.5 bg-brand-accent hover:bg-brand-accentHover text-white rounded-xl text-sm font-medium transition-colors">
+        {!solved && (
+          <button
+            onClick={() => window.location.reload()}
+            className="px-4 py-2.5 bg-brand-surface border border-brand-border hover:border-brand-accent text-brand-muted hover:text-brand-text rounded-xl text-sm font-medium transition-colors"
+          >
+            🔄 נסו שוב
+          </button>
+        )}
+        <Link
+          href="/"
+          className="px-4 py-2.5 bg-brand-accent hover:bg-brand-accentHover text-white rounded-xl text-sm font-medium transition-colors"
+        >
           חזרה לדף הבית
         </Link>
       </div>

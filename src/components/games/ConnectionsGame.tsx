@@ -4,7 +4,6 @@ import type { ConnectionsData, ConnectionGroup } from "@/types";
 import { saveScore, calcScore } from "@/lib/storage";
 import GameResult from "@/components/ui/GameResult";
 
-// צבעים לפי 5 רמות קושי – טקסט שחור בכולם
 const COLORS: Record<string, string> = {
   "very easy": "bg-green-200  border-green-300  text-black",
   "easy":      "bg-yellow-100 border-yellow-300 text-black",
@@ -29,7 +28,6 @@ const EMOJIS: Record<string, string> = {
 
 function shuffle<T>(a: T[]): T[] { return [...a].sort(() => Math.random() - 0.5); }
 
-// כמה מילים מהבחירה נמצאות בקבוצה נתונה
 function countMatches(group: ConnectionGroup, selected: string[]): number {
   return group.words.filter(w => selected.includes(w)).length;
 }
@@ -38,7 +36,6 @@ export default function ConnectionsGame({ data }: { data: ConnectionsData }) {
   const [words, setWords] = useState<string[]>(() => shuffle(data.groups.flatMap(g => g.words)));
   const [selected, setSelected] = useState<string[]>([]);
   const [solved, setSolved] = useState<ConnectionGroup[]>([]);
-  const [attempts, setAttempts] = useState(data.attempts);
   const [shake, setShake] = useState(false);
   const [hintsUsed, setHintsUsed] = useState(0);
   const [activeHint, setActiveHint] = useState<string | null>(null);
@@ -76,21 +73,12 @@ export default function ConnectionsGame({ data }: { data: ConnectionsData }) {
         setFinished(true);
       }
     } else {
-      // בדוק אם יש קבוצה עם 3 התאמות מתוך הבחירה
       const threeMatch = data.groups.find(g => !solved.includes(g) && countMatches(g, selected) === 3);
-      if (threeMatch) {
-        showToast("כמעט! שלוש מתוך הארבע נכונים 🔥");
-      }
+      if (threeMatch) showToast("כמעט! שלוש מתוך הארבע נכונים 🔥");
       setShake(true);
       setTimeout(() => setShake(false), 600);
-      const next = attempts - 1;
-      setAttempts(next);
-      if (next <= 0) {
-        saveScore({ gameId: "connections", score: 0, solved: false, hintsUsed, completedAt: Date.now() });
-        setFinished(true);
-      }
     }
-  }, [selected, solved, data, attempts, hintsUsed]);
+  }, [selected, solved, data, hintsUsed]);
 
   const showHint = () => {
     const unsolved = data.groups.find(g => !solved.includes(g));
@@ -103,14 +91,12 @@ export default function ConnectionsGame({ data }: { data: ConnectionsData }) {
   return (
     <div className="space-y-4 relative">
 
-      {/* Toast notification */}
       {toast && (
         <div className="fixed top-20 left-1/2 -translate-x-1/2 z-50 bg-brand-accent text-white px-5 py-3 rounded-2xl shadow-lg font-medium text-sm animate-bounce-in">
           {toast}
         </div>
       )}
 
-      {/* קבוצות שנפתרו */}
       {solved.map(g => (
         <div key={g.title} className={`rounded-xl border p-3 text-center animate-bounce-in ${COLORS[g.difficulty] ?? "bg-gray-200 border-gray-300 text-black"}`}>
           <div className="text-xs font-medium mb-1 opacity-60">{LABELS[g.difficulty] ?? g.difficulty}</div>
@@ -140,8 +126,7 @@ export default function ConnectionsGame({ data }: { data: ConnectionsData }) {
             </div>
           )}
 
-          <div className="flex items-center justify-between gap-2 flex-wrap">
-            <span className="text-brand-muted text-sm">ניסיונות: {attempts}/{data.attempts}</span>
+          <div className="flex items-center justify-end gap-2 flex-wrap">
             <div className="flex gap-2">
               <button onClick={() => setWords(shuffle(words))} className="px-3 py-2 bg-brand-surface border border-brand-border rounded-xl text-sm text-brand-muted hover:text-brand-text transition-colors">ערבוב</button>
               <button onClick={() => setSelected([])} disabled={!selected.length} className="px-3 py-2 bg-brand-surface border border-brand-border rounded-xl text-sm text-brand-muted hover:text-brand-text transition-colors disabled:opacity-40">ניקוי</button>

@@ -1,13 +1,13 @@
 {
   "start": "נחליאלי",
   "end": "בכירים",
-  "endExplanation": "הסבר לקשר אחרון",
+  "endExplanation": "רופאה בכירה",
   "links": [
-    { "answer": "חצבת", "hint": "רמז לאבן", "explanation": "הסבר לחצבת" },
-    { "answer": "אדמת", "hint": "רמז לכליות", "explanation": "הסבר לאדמת" },
-    { "answer": "דובדבן", "hint": "רמז למשאבה", "explanation": "הסבר לדובדבן" },
-    { "answer": "קצפת", "hint": "רמז לשוק", "explanation": "הסבר לקצפת" },
-    { "answer": "שלי", "hint": "ההפך הגמור מקר", "explanation": "הסבר לשלי" }
+    { "answer": "חצבת", "hint": "רמז לאבן", "explanation": "סתיו" },
+    { "answer": "אדמת", "hint": "רמז לכליות", "explanation": "MMRV" },
+    { "answer": "דובדבן", "hint": "רמז למשאבה", "explanation": "צבע אדום" },
+    { "answer": "קצפת", "hint": "רמז לשוק", "explanation": "הדובדבן שבקצפת" },
+    { "answer": "שלי", "hint": "ההפך הגמור מקר", "explanation": "אנורקסיה" }
   ],
   "distractors": ["פריכיות אורז", "תרופה", "גיורא"]
 }

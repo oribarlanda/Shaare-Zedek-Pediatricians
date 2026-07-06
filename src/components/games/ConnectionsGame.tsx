@@ -80,11 +80,14 @@ export default function ConnectionsGame({ data }: { data: ConnectionsData }) {
     }
   }, [selected, solved, data, hintsUsed]);
 
-  const showHint = () => {
-    const unsolved = data.groups.find(g => !solved.includes(g));
-    if (unsolved) { setActiveHint(unsolved.hint); setHintsUsed(h => h + 1); }
+const showHint = () => {
+    const unsolvedGroups = data.groups.filter(g => !solved.includes(g));
+    if (unsolvedGroups.length === 0) return;
+    const random = unsolvedGroups[Math.floor(Math.random() * unsolvedGroups.length)];
+    setActiveHint(random.hint);
+    setHintsUsed(h => h + 1);
   };
-
+  
   const score = calcScore(100, hintsUsed, data.groups.length);
   const shareText = `🎉 פתרתי את "מה הקשר"!\n\n${shareRows.join("\n")}\n\nניקוד: ${score}`;
 

@@ -57,7 +57,7 @@ export default function HomePage() {
 </div>
 
 <h1 className="text-2xl font-bold text-brand-text">
-  אורלי תבחר מה לכתוב פה
+  שנה טובה לאגף הילדים שערי צדק
 </h1>
       </div>
 

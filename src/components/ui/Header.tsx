@@ -21,7 +21,7 @@ export default function Header() {
               className="h-8 w-auto object-contain"
             />
             <span className="font-bold text-brand-text text-sm">
-              גם פה אורלי תבחר מה לכתוב
+              שנה טובה לאגף הילדים שערי צדק
             </span>
           </Link>
 
